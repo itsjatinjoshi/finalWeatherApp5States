@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/welcome">
+
+    <fragment
+        android:id="@+id/welcome"
+        android:name="com.example.weatherAppFiveStates.welcome"
+        android:label="Welcome to Weather App"
+        tools:layout="@layout/fragment_welcome" />
+
+    <fragment
+        android:id="@+id/weather1"
+        android:name="com.example.weatherAppFiveStates.weather1"
+        android:label="Weather in Montreal"
+        tools:layout="@layout/fragment_weather1" />
+    <fragment
+        android:id="@+id/weather2"
+        android:name="com.example.weatherAppFiveStates.weather2"
+        android:label="Weather in London"
+        tools:layout="@layout/fragment_weather2" />
+    <fragment
+        android:id="@+id/weather3"
+        android:name="com.example.weatherAppFiveStates.weather3"
+        android:label="Weather in Perth"
+        tools:layout="@layout/fragment_weather3" />
+    <fragment
+        android:id="@+id/weather4"
+        android:name="com.example.weatherAppFiveStates.weather4"
+        android:label="Weather in New Delhi"
+        tools:layout="@layout/fragment_weather4" />
+    <fragment
+        android:id="@+id/weather5"
+        android:name="com.example.weatherAppFiveStates.weather5"
+        android:label="Weather in Madrid"
+        tools:layout="@layout/fragment_weather5" />
+    <fragment
+        android:id="@+id/fragmentWebView"
+        android:name="com.example.weatherAppFiveStates.fragmentWebView"
+        android:label="fragment_web_view"
+        tools:layout="@layout/fragment_web_view" />
+
+</navigation>
