@@ -130,7 +130,7 @@ public class weather5 extends Fragment {
                 currentTemp.setText(montreal.getConsolidatedWeather().get(0).getTheTemp().toString().substring(0, 2) + "°C");
                 maxTemp.setText(montreal.getConsolidatedWeather().get(0).getMaxTemp().toString().substring(0, 2) + "°");
                 minTemp.setText(montreal.getConsolidatedWeather().get(0).getMinTemp().toString().substring(0, 2) + "°");
-                feelsLike.setText("Feels Like "+montreal.getConsolidatedWeather().get(0).getTheTemp().toString().substring(0, 2) + "°");
+                feelsLike.setText("Feels Like " + montreal.getConsolidatedWeather().get(0).getTheTemp().toString().substring(0, 2) + "°");
                 predictability.setText(montreal.getConsolidatedWeather().get(0).getPredictability() + "");
                 humidity.setText(montreal.getConsolidatedWeather().get(0).getHumidity() + "");
 
@@ -146,12 +146,11 @@ public class weather5 extends Fragment {
                     @Override
                     public void onClick(View view) {
 
-                        //  view.setTag(news);
-                        // Toast.makeText(getContext().getApplicationContext(), news,Toast.LENGTH_LONG).show();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("news", news);
+                        //Toast.makeText(getContext().getApplicationContext(),"link "+ news, Toast.LENGTH_LONG).show();
+                        Navigation.findNavController(view).navigate(R.id.fragmentWebView, bundle);
 
-                        NavController navController = Navigation.findNavController(getActivity(), R.id.hostFragment);
-
-                        navController.navigate(R.id.fragmentWebView);
 
                     }
                 });

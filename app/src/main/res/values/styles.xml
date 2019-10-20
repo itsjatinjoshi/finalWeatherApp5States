@@ -13,4 +13,9 @@
 
     </style>
 
+    <style name="NavigationViewStyle">
+        <item name="android:textSize">30sp</item> <!-- menu item text size-->
+        <item name="android:listPreferredItemHeightSmall">60dp</item><!-- menu item height-->
+    </style>
+
 </resources>

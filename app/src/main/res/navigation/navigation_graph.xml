@@ -39,7 +39,7 @@
     <fragment
         android:id="@+id/fragmentWebView"
         android:name="com.example.weatherAppFiveStates.fragmentWebView"
-        android:label="fragment_web_view"
+        android:label="Welcome to BBC Weather Page"
         tools:layout="@layout/fragment_web_view" />
 
 </navigation>

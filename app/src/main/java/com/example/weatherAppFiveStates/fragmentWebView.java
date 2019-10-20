@@ -29,9 +29,7 @@ import java.io.IOException;
 public class fragmentWebView extends Fragment {
     WebView webView;
     ProgressDialog progressDialog;
-
-
-    public  String url;
+    String url1;
 
 
     @Override
@@ -43,43 +41,82 @@ public class fragmentWebView extends Fragment {
         // progressDialog = new ProgressDialog(webview.this);
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_web_view, container, false);
+
+        try {
+            url1 = getArguments().getString("news");
+        } catch (Exception e) {
+            System.out.println("crash" + e.getMessage());
+
+        }
+
+
+        // System.out.println("uuuuuu" + url1);
+
+
+        webView = (WebView) rootView.findViewById(R.id.webView);
+        //  progressDialog = (ProgressBar)rootView.findViewById(R.id.progressBar);
+        progressDialog = new ProgressDialog(getContext());
+        //   progressDialog.setVisibility(View.VISIBLE);
+
+        //  webView.setWebViewClient(new MywebView());
+
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        webView.getSettings().setLoadsImagesAutomatically(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.setInitialScale(1);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setUseWideViewPort(true);
+        WebSettings webSettings = webView.getSettings();
+        webView.setWebViewClient(new MywebView());
+        webView.loadUrl(url1);
+
+
+        return rootView;
+
+
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        webView = view.findViewById(R.id.webView);
-
-
-
-
-        Bundle bundle = getArguments();
-        url = bundle.getString("news");
-
-
-
-
-      //  String url = getIntent().getStringExtra("url");
-        progressDialog = new ProgressDialog(getContext().getApplicationContext());
-
-        webView.setWebViewClient(new MywebView());
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        webView.getSettings().setLoadsImagesAutomatically(true);
-        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        webView.getSettings().setDomStorageEnabled(true);
-        webView.loadUrl(url);
-       // webView = (WebView) view.findViewById(R.id.webView);
-//        try{
-//            Bundle bundle = getArguments();
-//            url = bundle.getString("news");
-//            System.out.println("news here"  + url);
+//        webView = view.findViewById(R.id.webView);
+//
+//        Bundle bundle = this.getArguments();
+//      //  System.out.println("aaaa" + getArguments());
+//        url = bundle.getString("news");
 //
 //
-//        } catch (Exception e) {
+//       // mRootView = inflater.inflate(R.layout.empty_fragment, container, false);
 //
-//            System.out.println("kyu nai chalda" + e.getMessage());
-//            // e.printStackTrace();
-//        }
+//        //  String url = getIntent().getStringExtra("url");
+//        progressDialog = new ProgressDialog(getContext().getApplicationContext());
+//
+//        webView.setWebViewClient(new MywebView());
+//        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+//        webView.getSettings().setLoadsImagesAutomatically(true);
+//        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+//        webView.getSettings().setDomStorageEnabled(true);
+//        webView.loadUrl(url);
+//        // webView = (WebView) view.findViewById(R.id.webView);
+////        try{
+////            Bundle bundle = getArguments();
+////            url = bundle.getString("news");
+////            System.out.println("news here"  + url);
+////
+////
+////        } catch (Exception e) {
+////
+////            System.out.println("kyu nai chalda" + e.getMessage());
+////            // e.printStackTrace();
+////        }
 
     }
 
@@ -89,7 +126,7 @@ public class fragmentWebView extends Fragment {
             super.onPageStarted(view, url, favicon);
 
             progressDialog.setMessage("Page is Loading...Please wait");
-            progressDialog.setTitle("Artical Loading !!!");
+            progressDialog.setTitle("Please wait..!!!");
             progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressDialog.show();
         }
@@ -103,8 +140,7 @@ public class fragmentWebView extends Fragment {
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-             progressDialog.dismiss();
+            progressDialog.dismiss();
         }
     }
 }
-

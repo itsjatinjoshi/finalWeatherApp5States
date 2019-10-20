@@ -6,27 +6,32 @@
 
         <item
             android:id="@+id/first"
-            android:title="Montreal (Canada)"
+            android:title="@string/montreal_canada"
+            android:icon="@drawable/canada"
 
 
             android:visible="true" />
 
         <item android:id="@+id/second"
-            android:title="London (United Kingdom)"
+            android:title="@string/london_uk"
+            android:icon="@drawable/united_kingdom"
 
             />
 
         <item android:id="@+id/third"
-            android:title="Perth (Australia)"
+            android:title="@string/perth_australia"
+            android:icon="@drawable/australia"
          />
 
         <item android:id="@+id/forth"
-            android:title="New Delhi(India)"
+            android:title="@string/new_delhi_india"
+            android:icon="@drawable/india"
 
             />
 
         <item android:id="@+id/fifth"
-            android:title="Madrid(Spain)"
+            android:title="@string/madrid_spain"
+            android:icon="@drawable/spain"
             />
 
     </group>

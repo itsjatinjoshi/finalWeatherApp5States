@@ -222,9 +222,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:clickable="true"
-        android:text="bbc"
+        android:text="For more Weather info>>>"
         android:textColor="@android:color/white"
-        android:textSize="18sp" />
+        android:textSize="24sp" />
 
 
 

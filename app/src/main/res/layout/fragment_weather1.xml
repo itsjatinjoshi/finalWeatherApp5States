@@ -136,7 +136,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="15dp"
-        app:cardBackgroundColor="@color/colorAccent">
+        app:cardBackgroundColor="@color/top_blue">
 
 
         <LinearLayout
@@ -147,6 +147,7 @@
             android:layout_marginTop="1dp"
             android:layout_marginRight="1dp"
             android:layout_marginBottom="1dp"
+
             android:orientation="horizontal">
 
             <TextView
@@ -155,27 +156,39 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
 
+                android:gravity="center_horizontal"
                 android:text="Predictability :  "
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/predictability"
-                android:layout_width="48dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_horizontal"
                 android:text="TextView"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/cell"
+                android:src="@drawable/ic_line" />
 
             <TextView
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_horizontal"
                 android:text="Humidity :  "
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
@@ -188,6 +201,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
 
+                android:gravity="center_horizontal"
                 android:text="TextView"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
@@ -203,7 +217,7 @@
 
         android:layout_marginTop="10dp"
 
-        app:cardBackgroundColor="@color/colorAccent">
+        app:cardBackgroundColor="@color/top_blue">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleView"
@@ -224,9 +238,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:clickable="true"
-        android:text="bbc"
+        android:text="For more Weather info>>>"
         android:textColor="@android:color/white"
-        android:textSize="18sp" />
+        android:textSize="24sp" />
 
 
 </LinearLayout>

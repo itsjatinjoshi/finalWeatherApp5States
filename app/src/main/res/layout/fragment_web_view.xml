@@ -7,6 +7,8 @@
     android:orientation="vertical"
     tools:context=".fragmentWebView">
 
+
+
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"

@@ -131,9 +131,9 @@ public class weather1 extends Fragment {
                 currentWeatherDay.setText(presentDay + " ," + currentTime);
                 cityname.setText(montreal.getTitle());
                 weatherState.setText(montreal.getConsolidatedWeather().get(0).getWeatherStateName());
-                currentTemp.setText(montreal.getConsolidatedWeather().get(0).getTheTemp().toString().substring(0, 1) + "°");
-                maxTemp.setText(montreal.getConsolidatedWeather().get(0).getMaxTemp().toString().substring(0, 1) + "°");
-                minTemp.setText(montreal.getConsolidatedWeather().get(0).getMinTemp().toString().substring(0, 1) + "°");
+                currentTemp.setText(montreal.getConsolidatedWeather().get(0).getTheTemp().toString().substring(0,2) + "°");
+                maxTemp.setText(montreal.getConsolidatedWeather().get(0).getMaxTemp().toString().substring(0,2) + "°");
+                minTemp.setText(montreal.getConsolidatedWeather().get(0).getMinTemp().toString().substring(0,2) + "°");
                 feelsLike.setText("Feels Like " + montreal.getConsolidatedWeather().get(0).getTheTemp().toString().substring(0, 2) + "°");
                 predictability.setText(montreal.getConsolidatedWeather().get(0).getPredictability() + "");
                 humidity.setText(montreal.getConsolidatedWeather().get(0).getHumidity() + "");
@@ -155,17 +155,9 @@ public class weather1 extends Fragment {
                         Bundle bundle = new Bundle();
                         bundle.putString("news", news);
 
-                        //fragment.setArguments(data);
+ //Toast.makeText(getContext().getApplicationContext(),"link "+ news, Toast.LENGTH_LONG).show();
+
                         Navigation.findNavController(view).navigate(R.id.fragmentWebView, bundle);
-                       // System.out.println("dixit" + bundle);
-
-                        //    Toast.makeText(getContext().getApplicationContext(), news, Toast.LENGTH_LONG).show();
-
-//                    NavController navController = Navigation.findNavController(getActivity(), R.id.hostFragment);
-////
-//                       navController.navigate(R.id.fragmentWebView,bundle);
-
-
 
                     }
                 });

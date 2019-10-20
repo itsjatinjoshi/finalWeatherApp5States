@@ -11,7 +11,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public DrawerLayout drawerLayout;
     public NavController navController;
     public NavigationView navigationView;
+
+    ImageView img_header_bg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
+        navigationView.setItemIconTintList(null);
 
         navController = Navigation.findNavController(this, R.id.hostFragment);
 
@@ -46,6 +51,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationUI.setupWithNavController(navigationView, navController);
 
         navigationView.setNavigationItemSelectedListener(this);
+
+//        ImageView image = (ImageView)findViewById(R.id.img_header_bg);
+//        Glide.with(this)
+//                .load("https://media.giphy.com/media/yse8MzKv61jlC/giphy.gif")
+//                .into(img_header_bg);
+
+      //  Ion.with(image).load("http://mygifimage.gif");
 
 
     }

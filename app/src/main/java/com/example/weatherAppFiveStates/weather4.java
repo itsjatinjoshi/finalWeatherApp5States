@@ -146,12 +146,13 @@ public class weather4 extends Fragment {
                     @Override
                     public void onClick(View view) {
 
-                        //  view.setTag(news);
-                        // Toast.makeText(getContext().getApplicationContext(), news,Toast.LENGTH_LONG).show();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("news", news);
 
-                        NavController navController = Navigation.findNavController(getActivity(), R.id.hostFragment);
+                        //Toast.makeText(getContext().getApplicationContext(),"link "+ news, Toast.LENGTH_LONG).show();
 
-                        navController.navigate(R.id.fragmentWebView);
+                        Navigation.findNavController(view).navigate(R.id.fragmentWebView, bundle);
+
 
                     }
                 });

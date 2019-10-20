@@ -11,4 +11,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="new_delhi_india">New Delhi (India)</string>
+    <string name="madrid_spain">Madrid (Spain)</string>
+    <string name="perth_australia">Perth (Australia)</string>
+    <string name="london_uk">London (UK)</string>
+    <string name="montreal_canada">Montreal (Canada)</string>
 </resources>
