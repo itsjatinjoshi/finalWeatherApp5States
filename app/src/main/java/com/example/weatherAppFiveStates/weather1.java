@@ -72,6 +72,10 @@ public class weather1 extends Fragment{
 
     ProgressDialog progressDialog;
 
+    Handler handler = new Handler();
+    int apiDelayed = 5*1000; //1 second=1000 milisecond, 5*1000=5seconds
+    Runnable runnable;
+
     public weather1() {
         // Required empty public constructor
     }
@@ -80,24 +84,24 @@ public class weather1 extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_weather1, container, false);
-
-        final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.refreshLayout);
-
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-
-            @Override
-            public void onRefresh() {
-                // TODO Auto-generated method stub
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override public void run() {
-                        refreshLayout.setRefreshing(false);
-                    }
-                }, 5000);
-
-            }
-        });
+//        View v = inflater.inflate(R.layout.fragment_weather1, container, false);
+//
+//        final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.refreshLayout);
+//
+//        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//
+//            @Override
+//            public void onRefresh() {
+//                // TODO Auto-generated method stub
+//
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override public void run() {
+//                        refreshLayout.setRefreshing(false);
+//                    }
+//                }, 5000);
+//
+//            }
+//        });
 
 
         Calendar calendar = Calendar.getInstance();
@@ -110,7 +114,7 @@ public class weather1 extends Fragment{
         SimpleDateFormat sdf = new SimpleDateFormat("MMMM-yyyy-dd 'at' HH:mm");
         currentTime = sdf.format(new Date());
         presentDay = sdf1.format(now);
-        return v;
+        return inflater.inflate(R.layout.fragment_weather1, container, false);
     }
 
     @Override
@@ -118,15 +122,16 @@ public class weather1 extends Fragment{
         super.onViewCreated(view, savedInstanceState);
 
 
-//        refreshLayout = view.findViewById(R.id.refreshLayout);
-//        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//
-//                //System.out.println("time" + currentTime);
-//                refreshLayout.setRefreshing(false);
-//            }
-//        });
+        refreshLayout = view.findViewById(R.id.refreshLayout);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+
+                refreshLayout.setRefreshing(false);
+                getWeather();
+            }
+        });
 
 
         cityname = view.findViewById(R.id.cityname);
