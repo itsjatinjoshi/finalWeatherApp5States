@@ -1,10 +1,15 @@
 package com.example.weatherAppFiveStates;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.icu.text.LocaleDisplayNames;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -72,6 +77,7 @@ public class weather1 extends Fragment{
 
     ProgressDialog progressDialog;
 
+
     Handler handler = new Handler();
     int apiDelayed = 5*1000; //1 second=1000 milisecond, 5*1000=5seconds
     Runnable runnable;
@@ -80,28 +86,38 @@ public class weather1 extends Fragment{
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading..."); // Setting Message
+        progressDialog.setTitle("ProgressDialog"); // Setting Title
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+        progressDialog.show(); // Display Progress Dialog
+        progressDialog.setCancelable(false);
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                progressDialog.dismiss();
+            }
+        }).start();
+    }
+
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        View v = inflater.inflate(R.layout.fragment_weather1, container, false);
 //
-//        final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.refreshLayout);
-//
-//        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//
-//            @Override
-//            public void onRefresh() {
 //                // TODO Auto-generated method stub
-//
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override public void run() {
-//                        refreshLayout.setRefreshing(false);
-//                    }
-//                }, 5000);
-//
-//            }
-//        });
+       //  progressDialog = new ProgressDialog(getContext());
 
 
         Calendar calendar = Calendar.getInstance();
@@ -129,7 +145,7 @@ public class weather1 extends Fragment{
 
 
                 refreshLayout.setRefreshing(false);
-                getWeather();
+              //  getWeather();
             }
         });
 
@@ -159,9 +175,12 @@ public class weather1 extends Fragment{
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycleView);
         weatherPage = (ConstraintLayout) view.findViewById(R.id.weatherPage);
+       // mLoginFormView = findViewById(R.id.login_form);
 
-        progressDialog = new ProgressDialog(getContext());
+
+        //progressDialog = new ProgressDialog(getContext());
         getWeather();
+
     }
 
     public void getWeather() {
@@ -242,17 +261,9 @@ public class weather1 extends Fragment{
     }
 
 
-  //  @Override
-    /*public void onRefresh() {
 
-       refreshLayout.setRefreshing(false);
 
-       // Log.i(TAG, "onRefresh called from SwipeRefreshLayout");
 
-        // This method performs the actual data-refresh operation.
-        // The method calls setRefreshing(false) when it's finished.
-       // refreshLayout();
 
-    }*/
 }
 

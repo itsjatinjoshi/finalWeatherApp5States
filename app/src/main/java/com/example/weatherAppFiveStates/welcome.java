@@ -1,6 +1,7 @@
 package com.example.weatherAppFiveStates;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -46,6 +47,7 @@ public class welcome extends Fragment {
 
 
     ivDayMax, ivDayMin, tvDay, cityname;
+    ProgressDialog progressDialog;
 
 
     ImageView weatherImage, ivDay;
@@ -59,6 +61,27 @@ public class welcome extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading..."); // Setting Message
+        progressDialog.setTitle("ProgressDialog"); // Setting Title
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+        progressDialog.show(); // Display Progress Dialog
+        progressDialog.setCancelable(false);
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                progressDialog.dismiss();
+            }
+        }).start();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
