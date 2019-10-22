@@ -86,37 +86,6 @@ public class fragmentWebView extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        webView = view.findViewById(R.id.webView);
-//
-//        Bundle bundle = this.getArguments();
-//      //  System.out.println("aaaa" + getArguments());
-//        url = bundle.getString("news");
-//
-//
-//       // mRootView = inflater.inflate(R.layout.empty_fragment, container, false);
-//
-//        //  String url = getIntent().getStringExtra("url");
-//        progressDialog = new ProgressDialog(getContext().getApplicationContext());
-//
-//        webView.setWebViewClient(new MywebView());
-//        webView.getSettings().setJavaScriptEnabled(true);
-//        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-//        webView.getSettings().setLoadsImagesAutomatically(true);
-//        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-//        webView.getSettings().setDomStorageEnabled(true);
-//        webView.loadUrl(url);
-//        // webView = (WebView) view.findViewById(R.id.webView);
-////        try{
-////            Bundle bundle = getArguments();
-////            url = bundle.getString("news");
-////            System.out.println("news here"  + url);
-////
-////
-////        } catch (Exception e) {
-////
-////            System.out.println("kyu nai chalda" + e.getMessage());
-////            // e.printStackTrace();
-////        }
 
     }
 

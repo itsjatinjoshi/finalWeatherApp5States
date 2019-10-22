@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
-
+    android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
     android:background="@drawable/bg_home"
-    android:layout_height="match_parent"
-    tools:context=".weather1">
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="wrap_content"
-        android:id="@+id/refreshLayout"
-        android:layout_height="wrap_content">
-
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:background="@drawable/bg_home"
-        android:id="@+id/weatherPage"
         android:layout_height="match_parent">
 
         <LinearLayout
@@ -30,12 +22,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.01">
+            app:layout_constraintVertical_bias="0.060000002">
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
 
                 android:src="@drawable/ic_location" />
 
@@ -45,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textColor="@android:color/white"
-                android:textSize="30sp" />
+                android:textSize="18sp" />
 
 
         </LinearLayout>
@@ -60,10 +52,9 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.088" />
+            app:layout_constraintVertical_bias="0.13" />
 
         <LinearLayout
             android:id="@+id/linearLayout3"
@@ -75,7 +66,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.145">
+            app:layout_constraintVertical_bias="0.225">
 
             <ImageView
                 android:id="@+id/weatherImage"
@@ -105,7 +96,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.30">
+            app:layout_constraintVertical_bias="0.38">
 
             <TextView
                 android:id="@+id/maxTemp"
@@ -114,7 +105,7 @@
                 android:layout_marginRight="2dp"
                 android:text="TextView"
                 android:textColor="@android:color/white"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/sign"
@@ -123,7 +114,7 @@
                 android:layout_marginRight="2dp"
                 android:text="/"
                 android:textColor="@android:color/white"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
 
             <TextView
@@ -133,7 +124,7 @@
 
                 android:text="TextView"
                 android:textColor="@android:color/white"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/feelsLike"
@@ -143,7 +134,7 @@
                 android:layout_marginRight="2dp"
                 android:text="TextView"
                 android:textColor="@android:color/white"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
 
         </LinearLayout>
@@ -161,15 +152,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.359" />
+            app:layout_constraintVertical_bias="0.45" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="5dp"
             app:cardBackgroundColor="@color/top_blue"
             app:cardCornerRadius="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -177,7 +166,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.462">
+            app:layout_constraintVertical_bias="0.517">
 
 
             <LinearLayout
@@ -198,39 +187,28 @@
 
                     android:text="Predictability :  "
                     android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/predictability"
-                    android:layout_width="wrap_content"
+                    android:layout_width="48dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-
-
-                    android:text="aa"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="20dp"
+                    android:text="TextView"
                     android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:text="|"
-                    android:textColor="@android:color/white"
-                    android:textSize="40sp" />
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-
+                    android:layout_marginLeft="20dp"
                     android:text="Humidity :  "
                     android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
 
                 <TextView
@@ -238,11 +216,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginLeft="10dp"
 
-                    android:text="aa"
+                    android:text="TextView"
                     android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -252,16 +230,14 @@
             android:layout_height="wrap_content"
 
 
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
             app:cardBackgroundColor="@color/top_blue"
             app:cardCornerRadius="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.855">
+            app:layout_constraintVertical_bias="0.816">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleView"
@@ -278,21 +254,15 @@
             android:id="@+id/tvMoreDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:clickable="true"
             android:text="For more Weather info>>>"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.977" />
-
-
-
+            app:layout_constraintVertical_bias="0.907" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-</LinearLayout>

@@ -1,25 +1,37 @@
 package com.example.weatherAppFiveStates;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.icu.text.LocaleDisplayNames;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
+
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,30 +42,35 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
 import static java.util.Calendar.DAY_OF_WEEK;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class weather1 extends Fragment {
+public class weather1 extends Fragment{
+
+
     TextView currentWeatherDay, minTemp, feelsLike, maxTemp, weatherState, currentTemp,
             humidity, predictability, tvMoreDetails,
+            ivDayMax, ivDayMin, tvDay, cityname;
 
-
-    ivDayMax, ivDayMin, tvDay, cityname;
-
-
+    SwipeRefreshLayout refreshLayout;
+    ConstraintLayout weatherPage;
     ImageView weatherImage, ivDay;
 
     String presentDay, currentTime, urlNews;
 
     ArrayList<ConsolidatedWeather> weathers;
     RecyclerView recyclerView;
+
+    ProgressDialog progressDialog;
 
     public weather1() {
         // Required empty public constructor
@@ -63,7 +80,26 @@ public class weather1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_weather1, container, false);
+
+        final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.refreshLayout);
+
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+                // TODO Auto-generated method stub
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override public void run() {
+                        refreshLayout.setRefreshing(false);
+                    }
+                }, 5000);
+
+            }
+        });
+
+
         Calendar calendar = Calendar.getInstance();
         Date now = new Date();
         calendar.setTime(now);
@@ -74,12 +110,25 @@ public class weather1 extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat("MMMM-yyyy-dd 'at' HH:mm");
         currentTime = sdf.format(new Date());
         presentDay = sdf1.format(now);
-        return inflater.inflate(R.layout.fragment_weather1, container, false);
+        return v;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+//        refreshLayout = view.findViewById(R.id.refreshLayout);
+//        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//
+//                //System.out.println("time" + currentTime);
+//                refreshLayout.setRefreshing(false);
+//            }
+//        });
+
+
         cityname = view.findViewById(R.id.cityname);
         currentWeatherDay = view.findViewById(R.id.currentWeatherDay);
         minTemp = view.findViewById(R.id.minTemp);
@@ -103,22 +152,16 @@ public class weather1 extends Fragment {
         tvMoreDetails = view.findViewById(R.id.tvMoreDetail);
 
 
-        recyclerView = (RecyclerView)view.findViewById(R.id.recycleView);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycleView);
+        weatherPage = (ConstraintLayout) view.findViewById(R.id.weatherPage);
 
-//        tvMoreDetails.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//           System.out.println("more details " + tvMoreDetails);
-//
-//            }
-        // });
-
-
+        progressDialog = new ProgressDialog(getContext());
         getWeather();
     }
 
     public void getWeather() {
+
+//        refreshLayout.setRefreshing(false);
 
         weatherPojo weatherpojo = retrofitInstance.getRetrofitInstance().create(weatherPojo.class);
         Call<Montreal> call = weatherpojo.getWeather();
@@ -131,9 +174,9 @@ public class weather1 extends Fragment {
                 currentWeatherDay.setText(presentDay + " ," + currentTime);
                 cityname.setText(montreal.getTitle());
                 weatherState.setText(montreal.getConsolidatedWeather().get(0).getWeatherStateName());
-                currentTemp.setText(montreal.getConsolidatedWeather().get(0).getTheTemp().toString().substring(0,2) + "°");
-                maxTemp.setText(montreal.getConsolidatedWeather().get(0).getMaxTemp().toString().substring(0,2) + "°");
-                minTemp.setText(montreal.getConsolidatedWeather().get(0).getMinTemp().toString().substring(0,2) + "°");
+                currentTemp.setText(montreal.getConsolidatedWeather().get(0).getTheTemp().toString().substring(0, 2) + "°");
+                maxTemp.setText(montreal.getConsolidatedWeather().get(0).getMaxTemp().toString().substring(0, 2) + "°");
+                minTemp.setText(montreal.getConsolidatedWeather().get(0).getMinTemp().toString().substring(0, 2) + "°");
                 feelsLike.setText("Feels Like " + montreal.getConsolidatedWeather().get(0).getTheTemp().toString().substring(0, 2) + "°");
                 predictability.setText(montreal.getConsolidatedWeather().get(0).getPredictability() + "");
                 humidity.setText(montreal.getConsolidatedWeather().get(0).getHumidity() + "");
@@ -146,8 +189,6 @@ public class weather1 extends Fragment {
                 // System.out.println("news will show here   " + news);
 
 
-
-
                 tvMoreDetails.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -155,7 +196,7 @@ public class weather1 extends Fragment {
                         Bundle bundle = new Bundle();
                         bundle.putString("news", news);
 
- //Toast.makeText(getContext().getApplicationContext(),"link "+ news, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getContext().getApplicationContext(),"link "+ news, Toast.LENGTH_LONG).show();
 
                         Navigation.findNavController(view).navigate(R.id.fragmentWebView, bundle);
 
@@ -196,4 +237,17 @@ public class weather1 extends Fragment {
     }
 
 
+  //  @Override
+    /*public void onRefresh() {
+
+       refreshLayout.setRefreshing(false);
+
+       // Log.i(TAG, "onRefresh called from SwipeRefreshLayout");
+
+        // This method performs the actual data-refresh operation.
+        // The method calls setRefreshing(false) when it's finished.
+       // refreshLayout();
+
+    }*/
 }
+
